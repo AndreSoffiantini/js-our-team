@@ -56,29 +56,51 @@ stampare le stesse informazioni su DOM sottoforma di stringhe */
 
 for (let index in team) {
 
-    let personSection = document.createElement("div");
-    // let personInfo = personSection.innerHTML; non funziona, non è reattiva!
-    personSection.classList.add("col");
+    // let personInfo = memberSection.innerHTML; non funziona, non è reattiva!
+    let memberSection = document.createElement("div");
+    memberSection.classList.add("col");
+    teamSection.appendChild(memberSection);
 
-    teamSection.appendChild(personSection);
+    let memberCard = document.createElement("div");
+    memberCard.classList.add("card");
+    memberCard.style.width = "18rem";
+    memberSection.appendChild(memberCard);
 
-    personSection.innerHTML = `Persona ${Number(index) + 1}: `;
+    let cardImg = document.createElement("img");
+    cardImg.classList.add("card-img-top");
+    memberCard.appendChild(cardImg);
+
+    let cardBody = document.createElement("div");
+    cardBody.classList.add("card-body");
+    memberCard.appendChild(cardBody);
+
+    let cardTitle = document.createElement("h5");
+    cardTitle.classList.add("card-title");
+    cardBody.appendChild(cardTitle);
+
+    let cardText = document.createElement("p");
+    cardText.classList.add("card-text");
+    cardBody.appendChild(cardText);
 
     for (let key in team[index]) {
 
-        if (key != "image") {
-            let fullText = team[index][key] + " - ";
-            personSection.innerHTML += fullText;
-        } else {
-            // BONUS 1: trasformare la stringa foto in una immagine effettiva
-            let personImg = document.createElement("div");
-            personImg.classList.add("person_img");
-            personImg.style.backgroundImage = `url(./assets/img/${team[index][key]})`;
-            personSection.appendChild(personImg);
+        switch (key) {
+            case "name":
+                cardTitle.innerText = team[index][key];
+                break;
+
+            case "role":
+                cardText.innerText = team[index][key];
+                break;
+
+            case "image":
+                cardImg.src = `./assets/img/${team[index][key]}`;
+                break;
+
+            default:
+                break;
         }
 
     }
-
-    document.body.appendChild(document.createElement("br"));
 
 }
