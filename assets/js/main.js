@@ -72,7 +72,8 @@ addBtn.addEventListener("click", addMember);
 /**
  * La funzione legge i valori inseriti nei campi del form, li usa per creare un nuovo membro
  * all'interno del team, logga in console il nuovo team e crea la card del nuovo membro
- * tramite l'apposita funzione addCard
+ * tramite l'apposita funzione addCard. Mostra un alert nel caso venga inserito un membro
+ * duplicato (stesso nome E stesso ruolo di un membro già presente)
  */
 function addMember() {
 
@@ -84,9 +85,10 @@ function addMember() {
 
     }
 
-    console.log(`Il nuovo membro è già dentro il team? ${team.some(member => member.name === newMember.name)}`);
+    const checkForDuplicates = team.some(member => member.name === newMember.name && member.role === newMember.role);
+    console.log(`Il nuovo membro è già dentro il team? ${checkForDuplicates}`);
 
-    if (team.some(member => member.name === newMember.name)) {
+    if (checkForDuplicates) {
 
         alert("Il membro fa già parte del team!");
         return;
@@ -103,31 +105,32 @@ function addMember() {
 /**
  * La funzione genera la card per il membro del team con indice "member_index" all'interno della
  * relativa lista, utlizzando le funzioni di Bootstrap.
- * @param {*} member_index L'indice del membro del team a cui la card fa riferimento
+ * @param {string} member_index L'indice del membro del team a cui la card fa riferimento
  */
 function addCard(member_index) {
 
-    let memberSection = document.createElement("div");
+    const memberSection = document.createElement("div");
     memberSection.classList.add("col");
     teamSection.appendChild(memberSection);
 
-    let memberCard = document.createElement("div");
+    const memberCard = document.createElement("div");
     memberCard.classList.add("card");
+    memberCard.id = `${team[member_index].name}` + "_" + `${team[member_index].role}`;
     memberSection.appendChild(memberCard);
 
-    let cardImg = document.createElement("img");
+    const cardImg = document.createElement("img");
     cardImg.classList.add("card-img-top");
     memberCard.appendChild(cardImg);
 
-    let cardBody = document.createElement("div");
+    const cardBody = document.createElement("div");
     cardBody.classList.add("card-body", "text-center");
     memberCard.appendChild(cardBody);
 
-    let cardTitle = document.createElement("h5");
+    const cardTitle = document.createElement("h5");
     cardTitle.classList.add("card-title");
     cardBody.appendChild(cardTitle);
 
-    let cardText = document.createElement("p");
+    const cardText = document.createElement("p");
     cardText.classList.add("card-text");
     cardBody.appendChild(cardText);
 
@@ -154,8 +157,51 @@ function addCard(member_index) {
 
 }
 
-/* function checkTeam(member) {
+// Leggere il nome o il ruolo inserito nella barra di ricerca e scorrere fino alla card corrispondente
 
-    const sameName =
+const searchInput = document.getElementById("memberSearch");
+const finder = document.getElementById("search-addon");
 
-} */
+finder.addEventListener("click", findMember);
+
+/**
+ * La funzione cerca corrispondenze tra i nomi o i ruoli dei membri del team 
+ * con il valore inserito nella barra di ricerca: se ne trova, scorre la visuale
+ * finchè la card del membro cercato non è visibile.
+ */
+function findMember() {
+
+    const checkName = team.some(member => member.name === searchInput.value);
+    const checkRole = team.some(member => member.role === searchInput.value);
+
+    console.log(`checkName ${searchInput.value}: ${checkName}`);
+    console.log(`checkRole ${searchInput.value}: ${checkRole}`);
+    console.log(`checkName || checkRole ${searchInput.value}: ${checkName || checkRole}`);
+
+
+    if (checkName || checkRole) {
+
+        for (const index in team) {
+
+            if (team[index].name === searchInput.value || team[index].role === searchInput.value) {
+
+                const targetName = team[index].name;
+                const targetRole = team[index].role;
+
+                const targetMemberId = `${targetName}` + "_" + `${targetRole}`;
+                console.log(`${searchInput.value} ID: ${targetMemberId}`);
+
+                const targetMemberCard = document.getElementById(targetMemberId);
+                targetMemberCard.scrollIntoView();
+
+            }
+
+        }
+
+    } else {
+
+        alert("Membro non trovato!");
+
+    }
+
+}
