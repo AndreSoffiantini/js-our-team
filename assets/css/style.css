@@ -8,8 +8,6 @@ body {
     background-color: whitesmoke;
 }
 
-.person_img {
-    height: 100px;
-    aspect-ratio: 1;
-    background-size: cover;
+.small_container {
+    padding: 0 25%;
 }

@@ -1,4 +1,4 @@
-const team = [{
+let team = [{
         name: 'Wayne Barnett',
         role: 'Founder & CEO',
         image: 'wayne-barnett-founder-ceo.jpg',
@@ -63,7 +63,6 @@ for (let index in team) {
 
     let memberCard = document.createElement("div");
     memberCard.classList.add("card");
-    memberCard.style.width = "18rem";
     memberSection.appendChild(memberCard);
 
     let cardImg = document.createElement("img");
@@ -71,7 +70,7 @@ for (let index in team) {
     memberCard.appendChild(cardImg);
 
     let cardBody = document.createElement("div");
-    cardBody.classList.add("card-body");
+    cardBody.classList.add("card-body", "text-center");
     memberCard.appendChild(cardBody);
 
     let cardTitle = document.createElement("h5");
@@ -104,3 +103,5 @@ for (let index in team) {
     }
 
 }
+
+// Registrare una nuova persona nel lista del team e crearne la card al click di Add
