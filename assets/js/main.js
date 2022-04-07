@@ -30,6 +30,8 @@ const team = [{
     },
 ];
 
+const teamSection = document.getElementById("teamSection");
+
 /* MILESTONE 1:
 stampare su console le informazioni di nome, ruolo e la stringa della foto */
 
@@ -56,8 +58,9 @@ for (let index in team) {
 
     let personSection = document.createElement("div");
     // let personInfo = personSection.innerHTML; non funziona, non è reattiva!
+    personSection.classList.add("col");
 
-    document.body.appendChild(personSection);
+    teamSection.appendChild(personSection);
 
     personSection.innerHTML = `Persona ${Number(index) + 1}: `;
 
@@ -69,7 +72,7 @@ for (let index in team) {
         } else {
             // BONUS 1: trasformare la stringa foto in una immagine effettiva
             let personImg = document.createElement("div");
-            personImg.classList.add("person-img");
+            personImg.classList.add("person_img");
             personImg.style.backgroundImage = `url(./assets/img/${team[index][key]})`;
             personSection.appendChild(personImg);
         }
