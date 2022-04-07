@@ -46,9 +46,6 @@ for (let index in team) {
 
     }
 
-    /* console.log(team[index].name);
-    console.log(team[index].role);
-    console.log(team[index].image); */
     console.log(" ");
 }
 
@@ -58,17 +55,24 @@ stampare le stesse informazioni su DOM sottoforma di stringhe */
 for (let index in team) {
 
     let personSection = document.createElement("div");
-    let personInfo = personSection.innerText;
+    // let personInfo = personSection.innerHTML; non funziona, non è reattiva!
 
     document.body.appendChild(personSection);
 
-    personInfo = `Persona ${Number(index) + 1}: `;
-    console.log(personInfo);
-    console.log(personSection.innerText);
+    personSection.innerHTML = `Persona ${Number(index) + 1}: `;
 
     for (let key in team[index]) {
 
-        personSection.innerText += team[index][key] + " ";
+        if (key != "image") {
+            let fullText = team[index][key] + " - ";
+            personSection.innerHTML += fullText;
+        } else {
+            // BONUS 1: trasformare la stringa foto in una immagine effettiva
+            let personImg = document.createElement("div");
+            personImg.classList.add("person-img");
+            personImg.style.backgroundImage = `url(./assets/img/${team[index][key]})`;
+            personSection.appendChild(personImg);
+        }
 
     }
 
