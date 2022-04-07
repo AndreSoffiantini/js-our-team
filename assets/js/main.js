@@ -171,25 +171,27 @@ finder.addEventListener("click", findMember);
  */
 function findMember() {
 
-    const checkName = team.some(member => member.name === searchInput.value);
-    const checkRole = team.some(member => member.role === searchInput.value);
+    const inputValue = searchInput.value;
 
-    console.log(`checkName ${searchInput.value}: ${checkName}`);
-    console.log(`checkRole ${searchInput.value}: ${checkRole}`);
-    console.log(`checkName || checkRole ${searchInput.value}: ${checkName || checkRole}`);
+    const checkName = team.some(member => member.name === inputValue);
+    const checkRole = team.some(member => member.role === inputValue);
+
+    console.log(`checkName ${inputValue}: ${checkName}`);
+    console.log(`checkRole ${inputValue}: ${checkRole}`);
+    console.log(`checkName || checkRole ${inputValue}: ${checkName || checkRole}`);
 
 
     if (checkName || checkRole) {
 
         for (const index in team) {
 
-            if (team[index].name === searchInput.value || team[index].role === searchInput.value) {
+            if (team[index].name === inputValue || team[index].role === inputValue) {
 
                 const targetName = team[index].name;
                 const targetRole = team[index].role;
 
                 const targetMemberId = `${targetName}` + "_" + `${targetRole}`;
-                console.log(`${searchInput.value} ID: ${targetMemberId}`);
+                console.log(`${inputValue} ID: ${targetMemberId}`);
 
                 const targetMemberCard = document.getElementById(targetMemberId);
                 targetMemberCard.scrollIntoView();
