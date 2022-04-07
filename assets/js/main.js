@@ -84,6 +84,14 @@ function addMember() {
 
     }
 
+    console.log(`Il nuovo membro è già dentro il team? ${team.some(member => member.name === newMember.name)}`);
+
+    if (team.some(member => member.name === newMember.name)) {
+
+        alert("Il membro fa già parte del team!");
+        return;
+    }
+
     team.push(newMember);
     console.log(team);
 
@@ -145,3 +153,9 @@ function addCard(member_index) {
     }
 
 }
+
+/* function checkTeam(member) {
+
+    const sameName =
+
+} */
