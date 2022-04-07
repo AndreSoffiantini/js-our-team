@@ -69,6 +69,11 @@ const addBtn = document.getElementById("addBtn");
 
 addBtn.addEventListener("click", addMember);
 
+/**
+ * La funzione legge i valori inseriti nei campi del form, li usa per creare un nuovo membro
+ * all'interno del team, logga in console il nuovo team e crea la card del nuovo membro
+ * tramite l'apposita funzione addCard
+ */
 function addMember() {
 
     const newMember = {
@@ -87,6 +92,11 @@ function addMember() {
 
 }
 
+/**
+ * La funzione genera la card per il membro del team con indice "member_index" all'interno della
+ * relativa lista, utlizzando le funzioni di Bootstrap.
+ * @param {*} member_index L'indice del membro del team a cui la card fa riferimento
+ */
 function addCard(member_index) {
 
     let memberSection = document.createElement("div");

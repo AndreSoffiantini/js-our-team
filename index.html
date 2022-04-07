@@ -20,33 +20,49 @@
     <!-- /#site_header -->
 
     <main id="site_main">
+
         <div class="container">
-            <div id="teamSection" class="row row-cols-3 gy-4"></div>
 
-            <h3 class="text-center text-uppercase mt-5 mb-2">Add a new member</h3>
+            <section id="card_section">
+                <div id="teamSection" class="row row-cols-3 gy-4"></div>
+            </section>
+            <!-- /#card_section -->
 
-            <div class="container small_container">
+            <section id="form_section">
 
-                <div class="mb-3">
-                    <label for="formNameInput" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="formNameInput" placeholder="Luke Skywalker">
+                <h3 class="text-center text-uppercase mt-5 mb-2">Add a new member</h3>
+
+                <div class="container small_container">
+
+                    <div class="mb-3">
+                        <label for="formNameInput" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="formNameInput" placeholder="Luke Skywalker">
+                    </div>
+                    <!-- /#formNameInput -->
+
+                    <div class="mb-3">
+                        <label for="formRoleInput" class="form-label">Role</label>
+                        <input type="text" class="form-control" id="formRoleInput" placeholder="Jedi">
+                    </div>
+                    <!-- /#formRoleInput -->
+
+                    <div class="mb-3">
+                        <label for="formImageInput" class="form-label">Image</label>
+                        <input type="text" class="form-control" id="formImageInput" placeholder="new-team-member-0x.jpg">
+                    </div>
+                    <!-- /#formImageInput -->
+
+                    <button type="button" id="addBtn" class="btn btn-outline-secondary mb-5">Add</button>
+
                 </div>
+                <!-- /inputs container -->
 
-                <div class="mb-3">
-                    <label for="formRoleInput" class="form-label">Role</label>
-                    <input type="text" class="form-control" id="formRoleInput" placeholder="Jedi">
-                </div>
-
-                <div class="mb-3">
-                    <label for="formImageInput" class="form-label">Image</label>
-                    <input type="text" class="form-control" id="formImageInput" placeholder="boba-fett.jpg">
-                </div>
-
-                <button type="button" id="addBtn" class="btn btn-outline-secondary mb-5">Add</button>
-
-            </div>
+            </section>
+            <!-- /#form_section -->
 
         </div>
+        <!-- /.container -->
+
     </main>
     <!-- /#site_main -->
 
