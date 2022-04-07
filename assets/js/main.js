@@ -56,7 +56,39 @@ stampare le stesse informazioni su DOM sottoforma di stringhe */
 
 for (let index in team) {
 
-    // let personInfo = memberSection.innerHTML; non funziona, non è reattiva!
+    addCard(index);
+
+}
+
+// Registrare una nuova persona nel lista del team e crearne la card al click di Add
+
+const newMemberName = document.getElementById("formNameInput");
+const newMemberRole = document.getElementById("formRoleInput");
+const newMemberImage = document.getElementById("formImageInput");
+const addBtn = document.getElementById("addBtn");
+
+addBtn.addEventListener("click", addMember);
+
+function addMember() {
+
+    const newMember = {
+
+        name: newMemberName.value,
+        role: newMemberRole.value,
+        image: newMemberImage.value,
+
+    }
+
+    team.push(newMember);
+    console.log(team);
+
+    const newMemberIndex = team.indexOf(newMember);
+    addCard(newMemberIndex);
+
+}
+
+function addCard(member_index) {
+
     let memberSection = document.createElement("div");
     memberSection.classList.add("col");
     teamSection.appendChild(memberSection);
@@ -81,19 +113,19 @@ for (let index in team) {
     cardText.classList.add("card-text");
     cardBody.appendChild(cardText);
 
-    for (let key in team[index]) {
+    for (let key in team[member_index]) {
 
         switch (key) {
             case "name":
-                cardTitle.innerText = team[index][key];
+                cardTitle.innerText = team[member_index][key];
                 break;
 
             case "role":
-                cardText.innerText = team[index][key];
+                cardText.innerText = team[member_index][key];
                 break;
 
             case "image":
-                cardImg.src = `./assets/img/${team[index][key]}`;
+                cardImg.src = `./assets/img/${team[member_index][key]}`;
                 break;
 
             default:
@@ -103,5 +135,3 @@ for (let index in team) {
     }
 
 }
-
-// Registrare una nuova persona nel lista del team e crearne la card al click di Add
